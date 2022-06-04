@@ -9,9 +9,9 @@ app.use(cors())
 const jargon = {
     'tone': {
         'diplomatic': ['Keep me honest here.','At the end of the day, we don\'t have enough boots on the ground and just need to show we did our due diligence.'],
-        'sympathetic': ['It\'s the nature of the beast.',],
+        'sympathetic': ['It\'s the nature of the beast.', 'Hope you\'re well.'],
         'motivational': ['The prize for winning a pie-eating contest is more pie.','There\'s a lot of opportunity in this space.', 'We\'ll have the ballpark figures by COB and the full report ready in the AM.'],
-        'provocative' : ['This could have been an email'],
+        'provocative' : ['This could have been an email.', 'Per my last email.'],
         'cautionary': ['Let\'s not boil the ocean.', 'But what\'s the value add here?']
     },
     'dictionary': { 
@@ -33,7 +33,6 @@ const jargon = {
         'Assess, analyze, ideate, strategize, generate, and drive stakeholder alignment.',
         'Nominalization is your friend. Turn every verb into a noun, preferably with more than three syllables.',
         'Don\'t just do it. Conduct, implement, operationalize, or best of all, drive operationalization of it.',
-        'Use adjectives like they\'re nouns - if you say it with conviction, it will make sense to the whole team. Try: "creative."'
     ],
     'not found': ['Not found; please try again.'],
 }
