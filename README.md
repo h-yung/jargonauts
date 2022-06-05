@@ -1,4 +1,4 @@
-# jargonauts
+# jargonauts API
 A semi-satirical guide-as-API through the seas of business jargon, hosted on Heroku. Node.js + Express. Back end only.
 
 **Live:** https://jargonauts-api.herokuapp.com/api/jargon
