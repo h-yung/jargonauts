@@ -27,6 +27,7 @@ const jargon = {
         'okr': '(OKR) Objectives and Key Results - part of a respectable management strategy',
         'kpi': '(KPI) Key Performance Indicator - type of data point you care about because they might symbolize progress in a desired direction',
         'pls thx': 'equivalent to "I don\'t care how but get it done"; occasionally and erroneously translated as "please, thanks"',
+        'not found': 'Not in the dictionary...yet.',
     },
     'tips': [
         'Replace all uses of the word "use" with "leverage". Conjugate accordingly.',
