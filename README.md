@@ -22,4 +22,4 @@ Lessons learned
 - Considerations: Pros/cons of automatic deployment to Heroku
 
 Related projects
-Coming soon: Jargonauts web guide.
+**Jargonauts web guide:** https://github.com/h-yung/jargonauts-guide/
