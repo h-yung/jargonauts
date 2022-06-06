@@ -1,4 +1,4 @@
-# jargonauts API
+# Jargonauts API
 A semi-satirical guide-as-API through the seas of business jargon, hosted on Heroku. Node.js + Express. Back end only.
 
 **Live:** https://jargonauts-api.herokuapp.com/api/jargon
@@ -21,5 +21,6 @@ Lessons learned
 - Check for minor errors with big impact, especially inconsistencies ('res' or 'response')
 - Considerations: Pros/cons of automatic deployment to Heroku
 
-Related projects
+## Related projects
+
 **Jargonauts web guide:** https://github.com/h-yung/jargonauts-guide/
