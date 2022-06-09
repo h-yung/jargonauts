@@ -145,7 +145,7 @@ addStuff.addEventListener('click', extendResource)
 const categoryPicker = document.querySelector('select[data-type="resourceType"]')
 categoryPicker.addEventListener('change', showSubs)
 
-const passcode = document.querySelector('#passcode').value //needs to be 112 although preferably excluded 
+const passcode = document.querySelector('#passcode').value 
 let category;
 
 // for avoidance of error issues

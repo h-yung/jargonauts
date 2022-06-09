@@ -85,6 +85,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true})
 
 // Where to specify what is sent
 // visual cues for user, remove unnecessary info
+// where to gatekeep with a passcode - will likely remove from future fields
 // modularizing the css to components helped immensely when expanding input options /transitioning to database
 // link from ejs pre-comp tells you css and js can't be found, but express knows to serve them from public file. you just can't click through from the .ejs in VS code editor
 // need a successful submission indicator instead of hard refresh
