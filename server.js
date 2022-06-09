@@ -1,15 +1,101 @@
 const express = require('express')
 const app = express()
+const MongoClient = require('mongodb').MongoClient
 const cors = require('cors')
+const req = require('express/lib/request')
 const PORT=8000
 
-app.use(cors())
-app.use(express.urlencoded({ extended: true }))
-app.use(express.json())
-app.use(express.static('public'))
-app.set('view engine','ejs')
+const connectionString = 'mongodb+srv://LCM:wqnvJvYAAfpOXQZG@cluster0.7fdpg.mongodb.net/?retryWrites=true&w=majority'
+
+MongoClient.connect(connectionString, { useUnifiedTopology: true})
+    .then(client => {
+        console.log('connected to database')
+        const db = client.db('jargonauts')
+        const jargonCollection = db.collection('jargonTerms')
+        app.use(cors())
+        app.use(express.urlencoded({ extended: true }))
+        app.use(express.json())
+        app.use(express.static('public'))
+        app.set('view engine','ejs')
+        
+        app.get('/', (req,res) => { //for tips
+            jargonCollection.find(
+                {
+                    "category": "tips"
+                }
+            )
+                .toArray()
+                .then(data => {
+                    res.render('index.ejs', { tips: data })
+                })
+                .catch(err => console.log(err))
+        })
+        app.get('/tone/:tonalChoice', (req,res) => { 
+            const tonalChoice = req.params.tonalChoice.toLowerCase()
+            // console.log(tonalChoice)
+            jargonCollection.find(
+                {
+                    "category": "tone",
+                    "toneOption": tonalChoice
+                }
+            )
+                .toArray()
+                .then(data => {
+                    console.log(data)
+                    // res.render('index.ejs', { phraseRecd: data })
+                    // res.redirect('/') this was returning html? something that could not be parsed client-side as json
+                })
+                .catch(err => console.log(err))
+        })
+    
+
+        app.get('/api/:type', (req,res)=> {
+            const resourceType = req.params.type.toLowerCase()
+            console.log(resourceType)
+            if (resourceType === 'jargon'){
+                console.log('Please specify resource type.')
+                res.json(jargon)
+            } else if (jargon[resourceType]){
+                res.json(jargon[resourceType])
+            }else (
+                res.json( jargon['not found'][0])
+            )
+        })
+
+        app.post('/jargon', (req,res)=> {
+            if (req.body.passcode != 112){
+                console.log(`Need passcode`) 
+                res.redirect('/')
+            }else {
+                jargonCollection.insertOne(req.body)
+                    .then(result => {
+                        console.log(result)
+                        res.redirect('/')
+                    })
+                    .catch(err => console.log(err))
+            }
+        })
+
+        app.listen(process.env.PORT || PORT, ()=> {
+            console.log(`Server now running on port ${PORT}`)
+        })
+
+    })
+    .catch(err => console.log(err))
+
+// Where to specify what is sent
+// visual cues for user, remove unnecessary info
+// modularizing the css to components helped immensely when expanding input options /transitioning to database
+// link from ejs pre-comp tells you css and js can't be found, but express knows to serve them from public file. you just can't click through from the .ejs in VS code editor
+// need a successful submission indicator instead of hard refresh
+// possible to exclude certain fields from document objs based on removing name attribute from inputs on submit. using queryselectorAll x 2
+// how to make arrays per entry/property and concatenate?
+// haven't connected the database with Heroku
+//tip of the day code replaced api call via client-side js with use of ejs template engine
+// " SyntaxError: JSON.parse: unexpected character at line 1 column 1" - not returning a valid json object to be parsed from server side to client
 
 /* the object **************/ 
+
 const jargon = {
     'tone': {
         'diplomatic': ['Keep me honest here.','At the end of the day, we don\'t have enough boots on the ground and just need to show we did our due diligence.'],
@@ -43,24 +129,3 @@ const jargon = {
 }
 
 /*********************** */
-
-app.get('/', (req,res) => {
-    res.sendFile(__dirname +'/index.html') //change html after heroku
-})
-
-app.get('/api/:type', (req,res)=> {
-    const resourceType = req.params.type.toLowerCase()
-    console.log(resourceType)
-    if (resourceType === 'jargon'){
-        console.log('Please specify resource type.')
-        res.json(jargon)
-    } else if (jargon[resourceType]){
-        res.json(jargon[resourceType])
-    }else (
-        res.json( jargon['not found'][0])
-    )
-})
-
-app.listen(process.env.PORT || PORT, ()=> {
-    console.log(`Server now running on port ${PORT}`)
-})
