@@ -3,9 +3,12 @@ const app = express()
 const MongoClient = require('mongodb').MongoClient
 const cors = require('cors')
 const req = require('express/lib/request')
-const PORT=8000
+const PORT= process.env.PORT || 8000
+const dotenv = require('dotenv')
+dotenv.config()
+const DBURL = process.env.DATABASE_URL
 
-MongoClient.connect(process.env.DATABASE_URL, { useUnifiedTopology: true})
+MongoClient.connect(DBURL, { useUnifiedTopology: true})
     .then(client => {
         console.log('connected to database')
         const db = client.db('jargonauts')
@@ -74,24 +77,13 @@ MongoClient.connect(process.env.DATABASE_URL, { useUnifiedTopology: true})
             }
         })
 
-        app.listen(process.env.PORT || PORT, ()=> {
+        app.listen(PORT, ()=> {
             console.log(`Server now running on port ${PORT}`)
         })
 
     })
     .catch(err => console.log(err))
 
-// Where to specify what is sent
-// visual cues for user, remove unnecessary info
-// where to gatekeep with a passcode - will likely remove from future fields
-// modularizing the css to components helped immensely when expanding input options /transitioning to database
-// link from ejs pre-comp tells you css and js can't be found, but express knows to serve them from public file. you just can't click through from the .ejs in VS code editor
-// need a successful submission indicator instead of hard refresh
-// possible to exclude certain fields from document objs based on removing name attribute from inputs on submit. using queryselectorAll x 2
-// how to make arrays per entry/property and concatenate?
-// haven't connected the database with Heroku
-//tip of the day code replaced api call via client-side js with use of ejs template engine
-// " SyntaxError: JSON.parse: unexpected character at line 1 column 1" - not returning a valid json object to be parsed from server side to client
 
 /* the object **************/ 
 
