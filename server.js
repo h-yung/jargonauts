@@ -1,3 +1,8 @@
+
+const dotenv = require('dotenv')
+dotenv.config({path: 'vars.env'})
+
+
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
@@ -5,8 +10,8 @@ const cors = require('cors')
 const req = require('express/lib/request')
 const PORT= process.env.PORT || 8000
 
-const dotenv = require('dotenv')
-dotenv.config()
+
+console.log(process.env.DODO)
 
 MongoClient.connect(process.env.DATABASE_URL, { useUnifiedTopology: true})
     .then(client => {
@@ -83,6 +88,7 @@ MongoClient.connect(process.env.DATABASE_URL, { useUnifiedTopology: true})
 
     })
     .catch(err => console.log(err))
+
 
 
 /* the object **************/ 
