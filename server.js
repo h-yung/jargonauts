@@ -5,9 +5,7 @@ const cors = require('cors')
 const req = require('express/lib/request')
 const PORT=8000
 
-const connectionString = 'mongodb+srv://LCM:wqnvJvYAAfpOXQZG@cluster0.7fdpg.mongodb.net/?retryWrites=true&w=majority'
-
-MongoClient.connect(connectionString, { useUnifiedTopology: true})
+MongoClient.connect(process.env.DATABASE_URL, { useUnifiedTopology: true})
     .then(client => {
         console.log('connected to database')
         const db = client.db('jargonauts')
