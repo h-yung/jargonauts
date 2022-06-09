@@ -6,9 +6,8 @@ const req = require('express/lib/request')
 const PORT= process.env.PORT || 8000
 const dotenv = require('dotenv')
 dotenv.config()
-const DBURL = process.env.DATABASE_URL
 
-MongoClient.connect(DBURL, { useUnifiedTopology: true})
+MongoClient.connect(process.env.DATABASE_URL, { useUnifiedTopology: true})
     .then(client => {
         console.log('connected to database')
         const db = client.db('jargonauts')
