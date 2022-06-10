@@ -9,12 +9,13 @@
 		<title>Jargonauts, your guide to BizSpeak</title>
 
 		<script src="https://kit.fontawesome.com/9346d5df99.js" crossorigin="anonymous"></script>
+		<link rel="shortcut icon" href="favicon/favicon.ico">
+		<link rel="icon" type="image/gif" href="favicon/animated_favicon1.gif">
 
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Bitter:ital,wght@0,200;0,300;0,400;0,900;1,200;1,400;1,900&display=swap" rel="stylesheet"> 
-		<!-- external CSS link -->
-		<link rel="stylesheet" href="css/style.css"> <!--update intlinks-->
+		<link rel="stylesheet" href="css/style.css"> 
 	</head>
 	<body>
 		<img src="images/pexels-faris-7992270.jpg" data-type="background" alt="sea bkg">
@@ -72,8 +73,7 @@
 			</section>
             <section id="extend"> 
 				<h2>Add to the resource</h2>
-
-				<form id="addTerms" action="/jargon" method="POST"> <!--back to post-->
+				<form id="addTerms" action="/jargon" method="POST"> 
                     <input type="text" id="passcode" placeholder="Enter passcode" name="passcode">
                     <select data-type="resourceType" name="category">
                         <option value="default" selected>--</option>
@@ -94,9 +94,6 @@
                     </fieldset> 
 					<input class="button2 hidden" value="Submit New" id="newSub" type="submit">
 				</form>
-				<section data-type="definition">
-					<p data-type="tempOutput"><%= tips %></p>
-				</section>
 			</section>
 		</main> 
 
@@ -117,7 +114,7 @@
 
 		<footer>
 			<h3>Credits and disclaimers</h3>
-			<p id="creds" class="hidden">This is an unprofitable personal project. Additional submissions of your favorite jargon by industry will be warmly received <a href="https://twitter.com/h_h_yung">via Tweet</a>.  Be advised that within this particular project, exclusive industry abbreviations and vocabulary are unlikely to be fully accessible as that would violate a core principle of business jargon. We hear your concerns and raise you a read receipt.</p>
+			<p id="creds" class="hidden">This is an unprofitable personal project. Additional submissions to this resource or requests for the passcode will be warmly received <a href="https://twitter.com/h_h_yung">via Tweet</a>.  Be advised that within this particular project, exclusive industry abbreviations and vocabulary are unlikely to be fully accessible as that would violate a core principle of business jargon. We hear your concerns and raise you a read receipt.</p>
 		</footer>
 
 		<script type="text/javascript" src="js/main.js"></script>

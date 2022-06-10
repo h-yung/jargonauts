@@ -1,4 +1,3 @@
-
 // make sections visible or not
 document.querySelector('a[data-action="startMsg"]').addEventListener('click', function(){showSection('#generator')})
 document.querySelector('a[data-action="goAbout"]').addEventListener('click', function(){showSection('#about')})
@@ -23,44 +22,25 @@ document.querySelector('p[data-content="messageBody"]').addEventListener('click'
     navigator.clipboard.writeText(copy);
 })
 
-/*async*/ function getPhrase(){ 
+async function getPhrase(){ 
     let tonalChoice = document.querySelector('select[data-type="tone"]').value
-    if (tonalChoice !== "tone of choice"){
-        fetch(`/tone/${tonalChoice}`, {
-            method: "get",
-            headers: { "Content-Type": "application/json"},
-        })
-            .then(res => {
-                if (res.ok) return res.json()
-                document.querySelector('#phrase').classList.remove('hidden');
-            })
-            // .then(response => {
-            //     //do something with the response?
-            //     console.log(response)
-            // })
-            .catch(err=>console.log(err))
-    }else {
-        document.querySelector('#phrase').classList.add('hidden');
+    try {
+        // const res = await fetch('https://jargonauts-api.herokuapp.com/api/tone')
+        const res = await fetch(`/tone/${tonalChoice}`)
+        const data = await res.json()
+        if (tonalChoice !== "tone of choice"){
+            document.querySelector('#phrase').classList.remove('hidden');
+            let index = Math.floor(Math.random()*data.length)
+            messagePrinted.textContent = data[index].inspo
+        }else {
+            document.querySelector('#phrase').classList.add('hidden');
+        }
+    }catch(error){
+        console.log(error)
     }
-
-
-    // try {
-    //     const res = await fetch('https://jargonauts-api.herokuapp.com/api/tone')
-    //     const data = await res.json()
-    //     let tonalChoice = document.querySelector('select[data-type="tone"]').value
-    //     if (tonalChoice !== "tone of choice"){
-    //         messagePrinted.textContent = data[tonalChoice][Math.floor(Math.random()*data[tonalChoice].length)]
-    //         document.querySelector('#phrase').classList.remove('hidden');
-    //     }else {
-    //         document.querySelector('#phrase').classList.add('hidden');
-    //     }
-    // }catch(error){
-    //     console.log(error)
-    // }
-    // document.querySelector('#generator').classList.add('hidden')
 }
 
-//space for audio - hear read aloud. remove default action of submit. 
+//audio - hear read aloud 
 document.querySelector('#audible').addEventListener('click', readAloud)
 
 function readAloud(){
@@ -68,11 +48,10 @@ function readAloud(){
     let audibleJargon = new SpeechSynthesisUtterance(messagePrinted.innerText);
     synth.speak(audibleJargon);
 }
-// styling- if #generator does not have class .hidden, remove border from nav item
 
 // dictionary
-let dictionary;
-let dictionaryList;
+const dictionary = [];
+const dictionaryList = [];
 let tempHolder= document.querySelector('#holder')  //currently no tab available
 let searchBox = document.querySelector('#wordPhrase')
 let guess;
@@ -81,13 +60,16 @@ let definition = document.querySelector('#definition')
 
 let sendWord = document.querySelector('#sendWord') //button
 
-async function getDictionary(){ //is async - using fetch for now
+// on load, retrieve dictionary for faster lookup?
+async function getDictionary(){ 
     try {
         searchBox.value = ""// also reset search bar for each pg refresh
-        let response = await fetch('https://jargonauts-api.herokuapp.com/api/dictionary')
+        let response = await fetch('/dictionary')
         let results = await response.json()
-        dictionary = results;
-        dictionaryList = Object.keys(dictionary);
+        for (let i=0; i<results.length; i++){
+            dictionary.push({word: results[i].term, definition: results[i].newDef})
+            dictionaryList.push(results[i].term)
+        }
     }catch(error){
         console.log(error)
     }
@@ -97,7 +79,6 @@ function guessInput() {
     let wipWord = searchBox.value.toLowerCase()
     if (wipWord.length < 1) return; //exit if empty
     else {
-        if (dictionary === undefined || dictionaryList === undefined) getDictionary();
         guess = dictionaryList.find(word => word.slice(0,wipWord.length) === wipWord)
     }
 }
@@ -107,13 +88,17 @@ function giveResult(){
         if (thingToFind.length === 0){
             searchResult.textContent = ""
             definition.textContent = ""
-        }else if (dictionary[thingToFind]){
-            searchResult.textContent = thingToFind
-            definition.textContent = dictionary[thingToFind]
-            definition.classList.remove('clickMe')
-            definition.removeAttribute('title')
         }else {
-            if (guess !== undefined){
+            // look for thingToFind in the dictionary array
+            if (dictionaryList.includes(thingToFind)){
+                // if found, update placeholders
+                let answer = dictionary.find(obj => obj.word === thingToFind)
+                searchResult.textContent = thingToFind
+                definition.textContent = answer.definition
+                definition.classList.remove('clickMe')
+                definition.removeAttribute('title') //undo link
+            } else if (guess !== undefined){
+                // if not found, check guess and return guess with clickthrough link
                 searchResult.textContent = ""
                 definition.textContent = `Did you mean to look up "${guess}"?`
                 definition.classList.add('clickMe')
@@ -122,9 +107,10 @@ function giveResult(){
                     searchBox.value = guess;
                     giveResult();
                 })
-            }else {
+            } else {
+                // if no guess and not found, return a not found and format
                 searchResult.textContent = ""
-                definition.textContent = dictionary['not found']
+                definition.textContent = dictionary.find(obj=> obj.word === 'not found').definition
             }
         }
 }
@@ -146,29 +132,21 @@ const categoryPicker = document.querySelector('select[data-type="resourceType"]'
 categoryPicker.addEventListener('change', showSubs)
 
 const passcode = document.querySelector('#passcode').value 
-let category;
-
-// for avoidance of error issues
-let term;
-let newDef;
-let toneOption;
-let inspo;
-let tip;
 
 function showSubs(){
     document.querySelectorAll('fieldset').forEach(element => element.classList.add('hidden')) //hide irrelevant sets
-    category = categoryPicker.value
+    let category = categoryPicker.value
     document.querySelectorAll(`fieldset:not([data-type="${category}"])`).forEach(element => element.querySelectorAll('input').forEach(element => element.value = ""))
     document.querySelector(`fieldset[data-type='${category}']`).classList.remove('hidden')
     document.querySelector('#newSub').classList.remove('hidden')  
 }
 
 function extendResource(){
-    category = categoryPicker.value //reassign in case not initiated
+    let category = categoryPicker.value 
     document.querySelectorAll(`fieldset:not([data-type="${category}"])`).forEach(element => element.querySelectorAll('input').forEach(element => element.removeAttribute('name')))
     if (category === 'tone'){
-        toneOption = document.querySelector('input[name="toneOption"]').value
-        inspo = document.querySelector('input[name="inspo"]').value
+        let toneOption = document.querySelector('input[name="toneOption"]').value
+        let inspo = document.querySelector('input[name="inspo"]').value
         fetch('/jargon', {
             method:'post',
             headers: { 'Content-Type': 'application/json' },
@@ -180,8 +158,8 @@ function extendResource(){
         })
         .catch(err => console.log(err))
     }else if (category === 'dictionary'){
-        term = document.querySelector('input[name="term"]').value
-        newDef = document.querySelector('input[name="newDef"]').value
+        let term = document.querySelector('input[name="term"]').value
+        let newDef = document.querySelector('input[name="newDef"]').value
         fetch('/jargon', {
             method:'post',
             headers: { 'Content-Type': 'application/json' },
@@ -193,7 +171,7 @@ function extendResource(){
         })
         .catch(err => console.log(err))
     }else if (category === 'tips'){
-        tip = document.querySelector('input[name="tip"]').value
+        let tip = document.querySelector('input[name="tip"]').value
         fetch('/jargon', {
             method:'post',
             headers: { 'Content-Type': 'application/json' },
