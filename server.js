@@ -7,7 +7,6 @@ const app = express()
 const MongoClient = require('mongodb').MongoClient
 const cors = require('cors')
 const req = require('express/lib/request')
-const PORT= process.env.PORT || 8000
 
 MongoClient.connect(process.env.DATABASE_URL, { useUnifiedTopology: true})
     .then(client => {
@@ -83,8 +82,8 @@ MongoClient.connect(process.env.DATABASE_URL, { useUnifiedTopology: true})
             }
         })
 
-        app.listen(PORT, ()=> {
-            console.log(`Server now running on port ${PORT}`)
+        app.listen(process.env.PORT || 8000, ()=> {
+            console.log(`Server now running`)
         })
 
     })
