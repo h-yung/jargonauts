@@ -1,23 +1,26 @@
 {
-  "name": "n",
+  "name": "heroku-dbtest",
   "version": "1.0.0",
-  "engines": {
-    "node": "16.15.1"
-  },
-  "description": "jargon guide and generator",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "LCM",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h-yung/jargonauts-api.git"
+  },
+  "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/h-yung/jargonauts-api/issues"
+  },
+  "homepage": "https://github.com/h-yung/jargonauts-api#readme",
   "dependencies": {
-    "cors": "^2.8.5",
     "ejs": "^3.1.8",
-    "express": "^4.18.1",
-    "mongodb": "^4.7.0",
+    "express": "^4.18.1"
+  },
+  "devDependencies": {
     "dotenv": "^16.0.1"
-
   }
 }
