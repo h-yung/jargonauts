@@ -7,7 +7,7 @@ App currently runs locally (instructions to come; else await full relaunch as no
 
 ## How it's made
 
-**Tech used:** HTML, CSS, JavaScript, Node.js and Express framework. Some EJS for limited server-side rendering.
+**Tech used:** Front end: HTML, CSS, JavaScript; back end: Node.js and Express framework, MongoDB as database. Some EJS for limited server-side rendering.
 Began with just the API built using Node.js and Express during development, with automatic deployment to Heroku from GitHub. I used Postman to test the API at different points. 
 
 Front end was rebuilt separately on top of an older version of this project.
