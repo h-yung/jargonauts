@@ -38,7 +38,7 @@ User contributions are locked with a passcode that is validated server side.
 
 ### Troubleshot
 - "SyntaxError: JSON.parse: unexpected character at line 1 column 1" - this relates to not returning a valid json object to be parsed from server side to client
-- Procfile failures: Although it appears procfile may not be necessary (soon?), one possible error stems from the procfile format. By default (created from CLI) it is utf 8 but needs to be utf 16. Solution: Fix in Notepad or similar app, and remove previous file extension.
+- Procfile failures: Although it appears procfile may not be necessary (soon?), one possible error stems from the procfile format. By default (created from CLI) it is utf 16 but needs to be utf 8. Solution: Fix in Notepad or similar app, and remove previous file extension.
 
 ### Considerations
   - Pros/cons of automatic deployment to Heroku
