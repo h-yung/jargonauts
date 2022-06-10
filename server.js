@@ -9,6 +9,7 @@ const cors = require('cors')
 
 MongoClient.connect(process.env.DATABASE_URL, { useUnifiedTopology: true})
     .then(client => {
+        console.log('connected to database')
         const db = client.db('jargonauts')
         const jargonCollection = db.collection('jargonTerms')
         app.use(cors())
@@ -18,7 +19,7 @@ MongoClient.connect(process.env.DATABASE_URL, { useUnifiedTopology: true})
         app.set('view engine','ejs')
         
         //tip of day on load
-        app.get('/', (req,res) => { 
+        app.get('/jargon', (req,res) => { 
             jargonCollection.find(
                 {
                     "category": "tips"
