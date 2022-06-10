@@ -1,6 +1,7 @@
-const dotenv = require('dotenv')
-dotenv.config({path: 'vars.env'})
-
+if(process.env.NODE_ENV!=='production'){
+    const dotenv = require('dotenv')
+    dotenv.config({path: 'vars.env'})
+}
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
