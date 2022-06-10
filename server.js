@@ -1,25 +1,25 @@
-if(process.env.NODE_ENV!=='production'){
+if(process.env.NODE_ENV !== 'production'){
     const dotenv = require('dotenv')
     dotenv.config({path: 'vars.env'})
 }
 const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
-const cors = require('cors')
+const cors = require('cors') //diff
 
 MongoClient.connect(process.env.DATABASE_URL, { useUnifiedTopology: true})
     .then(client => {
         console.log('connected to database')
         const db = client.db('jargonauts')
         const jargonCollection = db.collection('jargonTerms')
-        app.use(cors())
+        app.use(cors()) //diff
         app.use(express.urlencoded({ extended: true }))
         app.use(express.json())
         app.use(express.static('public'))
         app.set('view engine','ejs')
         
         //tip of day on load
-        app.get('/jargon', (req,res) => { 
+        app.get('/', (req,res) => { 
             jargonCollection.find(
                 {
                     "category": "tips"
