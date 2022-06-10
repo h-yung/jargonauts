@@ -6,11 +6,9 @@ const express = require('express')
 const app = express()
 const MongoClient = require('mongodb').MongoClient
 const cors = require('cors')
-const req = require('express/lib/request')
 
 MongoClient.connect(process.env.DATABASE_URL, { useUnifiedTopology: true})
     .then(client => {
-        // console.log('connected to database')
         const db = client.db('jargonauts')
         const jargonCollection = db.collection('jargonTerms')
         app.use(cors())
