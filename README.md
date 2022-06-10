@@ -1,12 +1,12 @@
 # Jargonauts 
 A semi-satirical guide through the seas of business jargon, hosted on Heroku. Full stack web app with Node.js, Express, MongoDB, and some EJS.
-App currently runs locally (instructions to come; else await full relaunch as noted below).
+
+**Live:** https://jargonauts-api.herokuapp.com/
 
 ![guide intro screen](https://i.postimg.cc/d0Yk0mS4/jargon-anim.gif)
 ![guide demo screen](https://i.postimg.cc/wBmVCVR2/jargon-desktop-2.jpg)
 
 ## How it's made
-
 **Tech used:** Front end: HTML, CSS, JavaScript; back end: Node.js and Express framework, MongoDB as database. Some EJS for limited server-side rendering.
 Began with just the API built using Node.js and Express during development, with automatic deployment to Heroku from GitHub. I used Postman to test the API at different points. 
 
@@ -39,7 +39,9 @@ User contributions are locked with a passcode that is validated server side.
 ### Troubleshot
 - "SyntaxError: JSON.parse: unexpected character at line 1 column 1" - this relates to not returning a valid json object to be parsed from server side to client
 - Procfile failures: Although it appears procfile may not be necessary (soon?), one possible error stems from the procfile format. By default (created from CLI) it is utf 16 but needs to be utf 8. Solution: Fix in Notepad or similar app, and remove previous file extension.
+- Deploying with heroku CLI worked, while something went wrong with autodeploy from connected GitHub repo. I will need to check what happened with the autodeployment setup.
 
 ### Considerations
-  - Pros/cons of automatic deployment to Heroku
-  - main: index.js v server.js - does it make a difference?
+  - pros/cons of automatic deployment to Heroku (see above)
+  - main: index.js v server.js - does the naming convention have any current significance?
+  - general note deploying to Heroku (free tier): white listing all IP addresses obviously isn't the best practice but it's what is required currently. Security is based on MongoDB Atlas authentication measures.
