@@ -62,8 +62,11 @@ MongoClient.connect(process.env.DATABASE_URL, { useUnifiedTopology: true})
         })
 
         app.get('/api', (req,res)=> {
-            const data = jargonCollection.find()
-                res.json(data)
+            jargonCollection.find().toArray()
+                .then(data => {
+                    res.json(data)
+                })
+                .catch(err => console.log(err))
         })
 
         app.post('/jargon', (req,res)=> {
