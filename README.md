@@ -13,7 +13,7 @@ Began with just the API built using Node.js and Express during development, with
 Front end was rebuilt separately on top of an older version of this project.
 The current version uses MongoDB and allows submissions from users with the passcode (on request) through the app.
 Partial server-side rendering is enabled with EJS for "Tip of the Day" (top of web app).
-The latter part of the app (phrase recommendation, dictionary) relies on client-side rendering and is set up to reduce calls to the server. 
+The latter part of the app (phrase recommendation, dictionary) is set up to reduce calls to the server. 
 
 User contributions are locked with a passcode that is validated server side.
 
