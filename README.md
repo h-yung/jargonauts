@@ -31,7 +31,7 @@ User contributions are locked with a passcode that is validated server side.
 - VS Code editor seems to auto-generate necessary lines of code when you add certain parameters? (such as for dotenv.config())
 - Gatekeeping user contributions appear to need setup on server side.
 - Excluding certain fields from submission into the object, since different "resource types" for the API have different relevant keys. 
-  - I ended up removing the name attribute from the irrelevant fields after trying to handle with other properties (CSS - display:none). Are other methods recommended?
+  - I ended up removing the name attribute from the irrelevant fields after trying to handle with other properties (CSS - display:none). It seems to be better to put the conditional in client-side code (make the req body smaller for send, versus sending to server to decide which parts to insert).
   - Writing in a line of code to also clear previous fields of any values if the user selected a different resource type for their new submission after typing into a field.
 - Interesting to note that clicking through links from the ejs file pre-compiling fails, but express knows to serve them from public file when you start the app.
 - Client-side JS is a bit spaghetti-like and could use a more OOP-aligned rewrite to reduce scope pollution.
