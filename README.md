@@ -18,7 +18,6 @@ The latter part of the app (phrase recommendation, dictionary) is set up to redu
 User contributions are locked with a passcode that is validated server side.
 
 ## Optimizations
-- Currently debugging errors in deployment to Heroku.
 - Create a successful submission indicator (for new document/resource contribution).
 - Refactor so that dotenv can safely be listed solely as a devdependency without confusing Heroku into throwing another error. Initial code in server.js aimed to do this but error continued to come up until dotenv was changed into a general dependency.
 - (Firefox browser)  "NetworkError when attempting to fetch resource." This doesn't seem to stop things from working in localhost but may want to debug.
@@ -39,7 +38,9 @@ User contributions are locked with a passcode that is validated server side.
 ### Troubleshot
 - "SyntaxError: JSON.parse: unexpected character at line 1 column 1" - this relates to not returning a valid json object to be parsed from server side to client
 - Procfile failures: Although it appears procfile may not be necessary (soon?), one possible error stems from the procfile format. By default (created from CLI) it is utf 16 but needs to be utf 8. Solution: Fix in Notepad or similar app, and remove previous file extension.
-- Deploying with heroku CLI worked, while something went wrong with autodeploy from connected GitHub repo. I will need to check what happened with the autodeployment setup.
+- The dreaded H10 error resolved with the following remedies:
+  - "MongoDB connection string not found"-type error: Set an additional variable on Heroku and add conditional in server-side code so that dotenv doesn't look for an .env file that isn't there on deployment, and uses the env variables on Heroku.
+  - Deploying with heroku CLI worked, while something went wrong with autodeploy from connected GitHub repo. I will need to check what happened with the autodeployment setup.
 
 ### Considerations
   - pros/cons of automatic deployment to Heroku (see above)
