@@ -23,7 +23,7 @@ User contributions are locked with a passcode that is validated server side.
 - (Firefox browser)  "NetworkError when attempting to fetch resource." This doesn't seem to stop things from working in localhost but may want to debug.
 
 ## Lessons learned (many)
-- Install the CORS module to ensure accessibility
+- Install the CORS module to ensure API is accessible
 - Heroku uses its own port - update any hardcoded port to include environment variable conditionally. And check for simple mistakes when referencing process.env object.
 - Rewriting front-end code for server-side rendering using a template engine - not fully transitioned there but also questioning whether some client-side rendering might not perform better.
 - Modularizing the css to components helped immensely when expanding input options /refactoring to use MongoDB
