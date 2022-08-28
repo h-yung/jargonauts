@@ -1,7 +1,14 @@
 # Jargonauts 
-A semi-satirical guide through the seas of business jargon, hosted on Heroku. Full stack web app with Node.js, Express, MongoDB, and some EJS.
+A semi-satirical guide through the seas of business jargon, formerly hosted on Heroku. 
 
-**Live:** https://jargonauts-api.herokuapp.com/
+## Latest updates
+Since heroku is ending their free tier, I am migrating a few projects. Since there was barely any ejs involved to start with for this particular app, it was simple to split up front and back end:
+- Front end/live page on Netlify (linked below).
+- API hosted on Render: https://jargonauts.onrender.com
+
+Older notes below. The migration above showed me how inaccessible (although well-labeled!) my code used to be.
+
+**Live:** https://jargonauts.netlify.app/
 
 ![guide intro screen](https://i.postimg.cc/d0Yk0mS4/jargon-anim.gif)
 ![guide demo screen](https://i.postimg.cc/wBmVCVR2/jargon-desktop-2.jpg)
