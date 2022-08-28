@@ -217,6 +217,7 @@ header i:hover {
      background: rgba(255, 255, 255, 0.301);
      color: white;
 }
+
 .bigBox {
      /* flex container */
      justify-content: center;

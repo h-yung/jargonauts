@@ -1,5 +1,5 @@
 // live api
-const url='https://jargonauts.onrender.com/'
+const url='https://jargonauts.onrender.com'
 
 // make sections visible or not
 document.querySelector('a[data-action="startMsg"]').addEventListener('click', function(){showSection('#generator')})
@@ -77,15 +77,13 @@ async function getDictionary(){
     }
 }
 
-const getTipButton = document.querySelector('h2.generate-tip')
-getTipButton.addEventListener('click', getATip)
-
+getATip();
 async function getATip(){
-    const randomIndex = Math.floor(Math.random()*tips.length)
     const res = await fetch(`${url}/tip`)
     const data = await res.json()
+    const randomIndex = Math.floor(Math.random()*data.length)
     const output = document.querySelector('[data-output="proTip"]')
-    output.innerText = data[randomIndex]
+    output.innerText = data[randomIndex].tip
 }
 
 function guessInput() {
