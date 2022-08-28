@@ -1,3 +1,6 @@
+// live api
+const url='https://jargonauts.onrender.com/'
+
 // make sections visible or not
 document.querySelector('a[data-action="startMsg"]').addEventListener('click', function(){showSection('#generator')})
 document.querySelector('a[data-action="goAbout"]').addEventListener('click', function(){showSection('#about')})
@@ -25,8 +28,7 @@ document.querySelector('p[data-content="messageBody"]').addEventListener('click'
 async function getPhrase(){ 
     let tonalChoice = document.querySelector('select[data-type="tone"]').value
     try {
-        // const res = await fetch('https://jargonauts-api.herokuapp.com/api/tone')
-        const res = await fetch(`/tone/${tonalChoice}`)
+        const res = await fetch(`${url}/tone/${tonalChoice}`)
         const data = await res.json()
         if (tonalChoice !== "tone of choice"){
             document.querySelector('#phrase').classList.remove('hidden');
@@ -64,7 +66,7 @@ let sendWord = document.querySelector('#sendWord') //button
 async function getDictionary(){ 
     try {
         searchBox.value = ""// also reset search bar for each pg refresh
-        let response = await fetch('/dictionary')
+        let response = await fetch(`${url}/dictionary`)
         let results = await response.json()
         for (let i=0; i<results.length; i++){
             dictionary.push({word: results[i].term, definition: results[i].newDef})
@@ -80,7 +82,7 @@ getTipButton.addEventListener('click', getATip)
 
 async function getATip(){
     const randomIndex = Math.floor(Math.random()*tips.length)
-    const res = await fetch(`/tips`)
+    const res = await fetch(`${url}/tip`)
     const data = await res.json()
     const output = document.querySelector('[data-output="proTip"]')
     output.innerText = data[randomIndex]
@@ -158,7 +160,7 @@ function extendResource(){
     if (category === 'tone'){
         let toneOption = document.querySelector('input[name="toneOption"]').value
         let inspo = document.querySelector('input[name="inspo"]').value
-        fetch('/jargon', {
+        fetch(`${url}/jargon`, {
             method:'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ 
@@ -171,7 +173,7 @@ function extendResource(){
     }else if (category === 'dictionary'){
         let term = document.querySelector('input[name="term"]').value
         let newDef = document.querySelector('input[name="newDef"]').value
-        fetch('/jargon', {
+        fetch(`${url}/jargon`, {
             method:'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -183,7 +185,7 @@ function extendResource(){
         .catch(err => console.log(err))
     }else if (category === 'tips'){
         let tip = document.querySelector('input[name="tip"]').value
-        fetch('/jargon', {
+        fetch(`${url}/jargon`, {
             method:'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
