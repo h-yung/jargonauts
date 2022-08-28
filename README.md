@@ -2,7 +2,7 @@
 A semi-satirical guide through the seas of business jargon, formerly hosted on Heroku. 
 
 ## Latest updates
-Since heroku is ending their free tier, I am migrating a few projects. Since there was barely any ejs involved to start with for this particular app, it was simple to split up front and back end:
+Since heroku is ending their free tier, I am migrating a few projects. I started with this app as there was barely any ejs involved to start with and it had been put together quite separately. Splitting up front and back end:
 - Front end/live page on Netlify (linked below).
 - API hosted on Render: https://jargonauts.onrender.com
 
