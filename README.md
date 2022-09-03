@@ -1,11 +1,11 @@
 # Jargonauts 
-A semi-satirical guide through the seas of business jargon, formerly hosted on Heroku. 
+A semi-satirical guide through the seas of business jargon, formerly used ejs and hosted on Heroku. 
 
-## Latest updates
-Since heroku is ending their free tier, I am migrating a few projects. I started with this app as there was barely any ejs involved to start with and it had been put together quite separately. Splitting up front and back end:
+
+Current deployment:
 - Front end/live page on Netlify (linked below).
-- API hosted on Render: https://jargonauts.onrender.com
-Also possibly a bit janky, but front and back ends are deployed on the separate branches: `frontOnly` and `apiRender`.
+- API on Render: https://jargonauts.onrender.com
+Branches `frontOnly` and `apiRender`.
 
 Older notes below. The migration above showed me how inaccessible (although well-labeled!) my code used to be.
 Since this is no longer on heroku, it may be possible to have a better cors config.
