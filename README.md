@@ -10,7 +10,7 @@ Branches `frontOnly` and `apiRender`.
 Older notes below. The migration above showed me how inaccessible (although well-labeled!) my code used to be.
 Since this is no longer on heroku, it may be possible to have a better cors config.
 
-**Live:** https://jargonauts.netlify.app/
+## [Live](https://jargonauts.netlify.app/) 
 
 ![guide intro screen](https://i.postimg.cc/d0Yk0mS4/jargon-anim.gif)
 ![guide demo screen](https://i.postimg.cc/wBmVCVR2/jargon-desktop-2.jpg)
