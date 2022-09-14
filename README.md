@@ -4,7 +4,7 @@ A semi-satirical guide through the seas of business jargon, formerly used ejs an
 
 Current deployment:
 - Front end/live page on Netlify (linked below).
-- API on Render: https://jargonauts.onrender.com
+- API on Render.
 Branches `frontOnly` and `apiRender`.
 
 Older notes below. The migration above showed me how inaccessible (although well-labeled!) my code used to be.
