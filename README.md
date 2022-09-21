@@ -2,10 +2,10 @@
 A semi-satirical guide through the seas of business jargon, formerly used ejs and hosted on Heroku. 
 
 
-Current deployment:
+Current deployment (branches `frontOnly` and `apiRender`):
 - Front end/live page on Netlify (linked below).
 - API on Render.
-Branches `frontOnly` and `apiRender`.
+
 
 Older notes below. The migration above showed me how inaccessible (although well-labeled!) my code used to be.
 Since this is no longer on heroku, it may be possible to have a better cors config.
