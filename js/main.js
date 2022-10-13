@@ -154,6 +154,7 @@ function showSubs(){
 
 function extendResource(){
     let category = categoryPicker.value 
+    let passcode = document.querySelector('input[name="passcode"]').value
     document.querySelectorAll(`fieldset:not([data-type="${category}"])`).forEach(element => element.querySelectorAll('input').forEach(element => element.removeAttribute('name')))
     if (category === 'tone'){
         let toneOption = document.querySelector('input[name="toneOption"]').value
@@ -165,6 +166,7 @@ function extendResource(){
                 category,
                 toneOption,
                 inspo,
+                passcode
             })
         })
         .catch(err => console.log(err))
@@ -178,6 +180,7 @@ function extendResource(){
                 category, 
                 term,
                 newDef,
+                passcode
             })
         })
         .catch(err => console.log(err))
@@ -188,7 +191,8 @@ function extendResource(){
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 category,
-                tip
+                tip,
+                passcode
             })
         })
         .catch(err => console.log(err))
