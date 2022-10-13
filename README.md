@@ -18,7 +18,7 @@ The latter part of the app (phrase recommendation, dictionary) relies on client-
 User contributions are locked with a passcode that is validated server side.
 
 ## Optimizations
-- Currently debugging errors in deployment to Heroku.
+- Currently debugging errors in POST request now that API and front end are separately hosted, though error messages don't indicate it is a CORS issue.
 - Create a successful submission indicator (for new document/resource contribution).
 - Refactor so that dotenv can safely be listed solely as a devdependency without confusing Heroku into throwing another error. Initial code in server.js aimed to do this but error continued to come up until dotenv was changed into a general dependency.
 - (Firefox browser)  "NetworkError when attempting to fetch resource." This doesn't seem to stop things from working in localhost but may want to debug.
