@@ -1,0 +1,18 @@
+{
+  "name": "jargonauts_serverless",
+  "private": true,
+  "version": "2.0.0",
+  "type": "module",
+  "devDependencies": {
+    "netlify-cli": "^17.32.1"
+  },
+  "dependencies": {
+    "mongodb": "^6.8.0",
+    "pagecrypt": "^6.1.1"
+  },
+  "scripts": {
+    "encrypt": "pagecrypt dist/index.html dist/encrypted.html SAMPLE-PW-not-locking-this -o dist/index.html",
+    "post-encrypt": "cp dist/index.html ../jargonauts_bak_index.html && mv dist/encrypted.html dist/index.html",
+    "deploy": "npm run encrypt && npm run post-encrypt && npx ntl deploy --prod"
+  }
+}
